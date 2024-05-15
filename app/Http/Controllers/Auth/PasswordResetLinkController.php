@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class PasswordResetLinkController extends Controller
 {
@@ -35,7 +36,7 @@ class PasswordResetLinkController extends Controller
         $status = Password::sendResetLink(
             $request->only('email')
         );
-
+        toastr('Email sent successfully','success','',['ProgressBar']);
         return $status == Password::RESET_LINK_SENT
                     ? back()->with('status', __($status))
                     : back()->withInput($request->only('email'))

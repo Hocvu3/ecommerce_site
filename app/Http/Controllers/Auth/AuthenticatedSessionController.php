@@ -30,9 +30,10 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if($request->user()->role ==='admin'){
+            toastr('Login successfully','success','',['ProgressBar']);
             return redirect()->intended(RouteServiceProvider::AdminHome);
         }
-
+        toastr('Login successfully','success','',['ProgressBar']);
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

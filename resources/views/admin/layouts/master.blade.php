@@ -12,6 +12,7 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('admin/assets/css/components.css')}}">
+  <link rel="stylesheet" href="{{asset('frontend/css/toastr.min.css')}}">
 <!-- Start GA -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
 <script>
@@ -52,5 +53,17 @@
   <!-- Template JS File -->
   <script src="{{asset('admin/assets/js/scripts.js')}}"></script>
   <script src="{{asset('admin/assets/js/custom.js')}}"></script>
+  <script src="{{ asset('frontend/js/toastr.min.js') }}"></script>
+  <script>
+    toastr.options.progressBar = true;
+    toastr.options.closeButton = true;
+    toastr.options.closeDuration = 300;
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}")
+        @endforeach
+    @endif
+</script>
 </body>
 </html>
