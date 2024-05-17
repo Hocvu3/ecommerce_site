@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Frontend\ProfileController;
 use Illuminate\Routing\RouteRegistrar;
 use Illuminate\Support\Facades\Route;
 
@@ -25,17 +26,16 @@ use Illuminate\Support\Facades\Route;
 //Homepage
 Route::get('/',[FrontendController::class,'index'])->name('home');
 
-//Admin Auth Login
-Route::get('/admin/login',[AdminAuthController::class,'index'])->name('admin.login');
-//User Login
-Route::get('/dashboard',[function(){
-    return view('dashboard');
-}])->name('dashboard');
-//
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::group(['middleware'=>'guest'],function () {
+    //Admin Auth Login
+    Route::get('/admin/login',[AdminAuthController::class,'index'])->name('admin.login');
+    Route::get('/admin/forgot-password',[AdminAuthController::class,'resetPassword'])->name('admin.password.request');
 });
-
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+    Route::put('/profile/update',[ProfileController::class,'updateProfile'])->name('profile.update');
+    Route::put('/profile/password/update',[ProfileController::class,'updatePassword'])->name('profile.password.update');
+    Route::post('/profile/avatar/update',[ProfileController::class,'updateAvatar'])->name('profile.avatar.update');
+});
+//
 require __DIR__.'/auth.php';

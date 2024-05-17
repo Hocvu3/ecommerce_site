@@ -14,9 +14,15 @@ class PasswordResetLinkController extends Controller
     /**
      * Display the password reset link request view.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
-        return view('auth.forgot-password');
+        if ($request->is('forgot-password')) {
+            return view('auth.forgot-password');
+        } elseif ($request->is('admin/forgot-password')) {
+            return view('admin.auth.forgot-password');
+        } else {
+            abort(404); // Hoặc một xử lý khác nếu không khớp URL nào
+        }
     }
 
     /**
@@ -36,10 +42,45 @@ class PasswordResetLinkController extends Controller
         $status = Password::sendResetLink(
             $request->only('email')
         );
-        toastr('Email sent successfully','success','',['ProgressBar']);
+        toastr('Email sent successfully','success','',        [
+            'ProgressBar'=>'true',
+            'closeButton'=>'true',
+        ]);
         return $status == Password::RESET_LINK_SENT
                     ? back()->with('status', __($status))
                     : back()->withInput($request->only('email'))
                             ->withErrors(['email' => __($status)]);
     }
+//     public function store(Request $request): RedirectResponse
+// {
+//     $request->validate([
+//         'email' => ['required', 'email'],
+//     ]);
+
+//     // Kiểm tra xem user có phải là admin hay không
+//     $user = \App\Models\User::where('email', $request->email)->first();
+
+//     if ($user && $user->role == 'admin') {
+//         // Xử lý link reset password cho admin
+//         $status = Password::broker('admins')->sendResetLink(
+//             $request->only('email')
+//         );
+//     } else {
+//         // Xử lý link reset password cho user thường
+//         $status = Password::sendResetLink(
+//             $request->only('email')
+//         );
+//     }
+
+//     // Hiển thị thông báo thành công hoặc lỗi
+//     toastr('Email sent successfully','success','', [
+//         'ProgressBar' => 'true',
+//         'closeButton' => 'true',
+//     ]);
+
+//     return $status == Password::RESET_LINK_SENT
+//         ? back()->with('status', __($status))
+//         : back()->withInput($request->only('email'))
+//                 ->withErrors(['email' => __($status)]);
+// }
 }

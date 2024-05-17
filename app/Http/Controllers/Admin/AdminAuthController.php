@@ -11,4 +11,7 @@ class AdminAuthController extends Controller
     public function index():View{
         return view('admin.auth.login');
     }
+    public function resetPassword():View{
+        return view('admin.auth.forgot-password');
+    }
 }
