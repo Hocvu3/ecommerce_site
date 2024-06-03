@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
-    <meta name="csrf_token" content="{{ csrf_token() }}" />
+    <meta name="csrf_token" content="{{ csrf_token() }}">
     <title>Ecommerce Site</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="{{ asset('frontend/css/all.min.css') }}">
@@ -17,15 +17,27 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/jquery.exzoom.css') }}">
 
-
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
 </head>
 
 <body>
-
+    {{-- {{ Cart::destroy() }} --}}
+    <div class="overlay-container d-none">
+        <div class="overlay">
+            <span class="loader"></span>
+        </div>
+    </div>
+    <!--=============================
+        CART POP UP START
+    ==============================-->
+    @include('frontend.home.components.cart-popup')
+    <!--=============================
+        CART POP UP END
+    ==============================-->
     <!--=============================
         TOPBAR START
     ==============================-->
@@ -42,9 +54,8 @@
     <!--=============================
         MENU END
     ==============================-->
+
     @yield('content')
-
-
 
     <!--=============================
         FOOTER START
@@ -58,9 +69,9 @@
     <!--=============================
         SCROLL BUTTON START
     ==============================-->
-    <div class="fp__scroll_btn">
+    {{-- <div class="fp__scroll_btn">
         go to top
-    </div>
+    </div> --}}
     <!--=============================
         SCROLL BUTTON END
     ==============================-->
@@ -91,10 +102,10 @@
     <script src="{{ asset('frontend/js/wow.min.js') }}"></script>
     <!-- ex zoom js -->
     <script src="{{ asset('frontend/js/jquery.exzoom.js') }}"></script>
+    {{-- sweet alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--main/custom js-->
-    <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
-
     <script src="{{ asset('frontend/js/toastr.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -116,7 +127,11 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
     </script>
+
+    @include('frontend.layouts.global-script')
+
     @stack('scripts')
 </body>
 

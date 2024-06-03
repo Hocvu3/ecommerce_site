@@ -2,7 +2,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Create Slider</h1>
+            <h1>Update Slider</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">

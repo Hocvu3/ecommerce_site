@@ -50,13 +50,15 @@
             <li class="menu-header">Starter</li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                        class="fas fa-columns"></i> <span>Layout</span></a>
+                        class="fas fa-columns"></i> <span>Product Manage</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.category.index') }}">Category</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.product.index') }}">Product</a></li>
                 </ul>
             </li>
+            <li><a class="nav-link" href="{{ route('admin.payment-settings.index') }}"><i class="far fa-square"></i> <span>PaymentGateWay</span></a></li>
+            <li><a class="nav-link" href="{{ route('admin.coupon.index') }}"><i class="far fa-square"></i> <span>Coupon</span></a></li>
+            <li><a class="nav-link" href="{{ route('admin.delivery-area.index') }}"><i class="far fa-square"></i> <span>Delivery Area</span></a></li>
             <li><a class="nav-link" href="{{ route('admin.slider.index') }}"><i class="far fa-square"></i> <span>Slider</span></a></li>
         </ul>
     </aside>

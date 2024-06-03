@@ -6,14 +6,17 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "anayarojo/shoppingcart": "^4.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "srmklive/paypal": "~3.0",
         "yajra/laravel-datatables": "10.0",
         "yoeunes/toastr": "^2.3"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.13",
         "barryvdh/laravel-ide-helper": "^3.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "1.29.1",
@@ -29,7 +32,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files":[
+            "app/Helpers/global_helper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

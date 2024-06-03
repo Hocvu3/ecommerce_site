@@ -11,7 +11,7 @@
                                     <div class="img">
                                         <img src="{{ asset($slider->image) }}" alt="food item" class="img-fluid w-100">
                                         @if ($slider->offer)
-                                        <span> {{ $slider->offer }} </span>
+                                            <span> {{ $slider->offer }} </span>
                                         @endif
                                     </div>
                                 </div>
@@ -21,11 +21,11 @@
                                     <h1>{!! $slider->title !!}</h1>
                                     <h3>{!! $slider->sub_title !!}</h3>
                                     <p>{!! $slider->short_description !!}</p>
+                                    @if ($slider->button_link)
                                     <ul class="d-flex flex-wrap">
-                                        @if ($slider->button_link)
                                         <li><a class="common_btn" href="{{ $slider->button_link }}">shop now</a></li>
-                                        @endif
                                     </ul>
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg main_menu">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <img src="images/logo.png" alt="FoodPark" class="img-fluid">
+        <a class="navbar-brand" href="{{ route('home') }}">
+            <img src="{{ asset('frontend/images/logo.png') }}" alt="FoodPark" class="img-fluid">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,16 +10,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">about</a>
+                    <a class="nav-link" href=" ">menu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="menu.html">menu</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="chefs.html">chefs</a>
+                    <a class="nav-link" href="{{ route('chefs.index') }}">chefs</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">pages <i class="far fa-angle-down"></i></a>
@@ -41,10 +38,13 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="blogs.html">blog</a>
+                    <a class="nav-link" href="{{ route('blog.index') }}">blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html">contact</a>
+                    <a class="nav-link" href="{{ route('about.index') }}">about</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('contact.index') }}">contact</a>
                 </li>
             </ul>
             <ul class="menu_icon d-flex flex-wrap">
@@ -59,28 +59,49 @@
                     </div>
                 </li>
                 <li>
-                    <a class="cart_icon"><i class="fas fa-shopping-basket"></i> <span>5</span></a>
+                    <a class="cart_icon"><i class="fas fa-shopping-basket"></i> <span  class="cart_count">{{ count(Cart::content()) }}</span></a>
                 </li>
                 <li>
                     <a href="{{ route('login') }}"><i class="fas fa-user"></i></a>
                 </li>
                 <li>
                     <a class="common_btn" href="#" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop">reservation</a>
+                        data-bs-target="#staticBackdrop">coming soon!</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-
 <div class="fp__menu_cart_area">
     <div class="fp__menu_cart_boody">
         <div class="fp__menu_cart_header">
-            <h5>total item (05)</h5>
+            <h5>total item (<span class="cart_count">{{ count(Cart::content()) }}</span>)</h5>
             <span class="close_cart"><i class="fal fa-times"></i></span>
         </div>
-        <ul>
-            <li>
+        <ul class="cart_content">
+            @foreach (Cart::content() as $cartProduct)
+                <li>
+                    <div class="menu_cart_img">
+                        <img src="{{ asset($cartProduct->options->product_info['image']) }}" alt="menu"
+                            class="img-fluid w-100">
+                    </div>
+                    <div class="menu_cart_text">
+                        <a class="title"
+                            href="{{ route('product.show', $cartProduct->options->product_info['slug']) }}">{!! $cartProduct->name !!}
+                        </a>
+                        <p class="size">Qty: {{ $cartProduct->qty }}</p>
+                        <p class="size">{{ @$cartProduct->options->product_size['name']}}
+                            {{@$cartProduct->options->product_size['price'] ? ': $'.$cartProduct->options->product_size['price'] : '' }}</p>
+                        @foreach ($cartProduct->options->product_option as $cartProductOption)
+                            <span class="extra">{{ $cartProductOption['name'] }}:
+                                ${{ $cartProductOption['price'] }}</span>
+                        @endforeach
+                        <h5 class="price">${{ $cartProduct->price }}</h5>
+                    </div>
+                    <span class="del_icon" onclick="removeProductFromSidebar('{{ $cartProduct->rowId }}')"><i class="fal fa-times"></i></span>
+                </li>
+            @endforeach
+            {{-- <li>
                 <div class="menu_cart_img">
                     <img src="images/menu8.png" alt="menu" class="img-fluid w-100">
                 </div>
@@ -92,61 +113,11 @@
                     <p class="price">$99.00 <del>$110.00</del></p>
                 </div>
                 <span class="del_icon"><i class="fal fa-times"></i></span>
-            </li>
-            <li>
-                <div class="menu_cart_img">
-                    <img src="images/menu4.png" alt="menu" class="img-fluid w-100">
-                </div>
-                <div class="menu_cart_text">
-                    <a class="title" href="#">Chicken Masalas</a>
-                    <p class="size">medium</p>
-                    <span class="extra">7up</span>
-                    <p class="price">$70.00</p>
-                </div>
-                <span class="del_icon"><i class="fal fa-times"></i></span>
-            </li>
-            <li>
-                <div class="menu_cart_img">
-                    <img src="images/menu5.png" alt="menu" class="img-fluid w-100">
-                </div>
-                <div class="menu_cart_text">
-                    <a class="title" href="#">Competently Supply Customized Initiatives</a>
-                    <p class="size">large</p>
-                    <span class="extra">coca-cola</span>
-                    <span class="extra">7up</span>
-                    <p class="price">$120.00 <del>$150.00</del></p>
-                </div>
-                <span class="del_icon"><i class="fal fa-times"></i></span>
-            </li>
-            <li>
-                <div class="menu_cart_img">
-                    <img src="images/menu6.png" alt="menu" class="img-fluid w-100">
-                </div>
-                <div class="menu_cart_text">
-                    <a class="title" href="#">Hyderabadi Biryani</a>
-                    <p class="size">small</p>
-                    <span class="extra">7up</span>
-                    <p class="price">$59.00</p>
-                </div>
-                <span class="del_icon"><i class="fal fa-times"></i></span>
-            </li>
-            <li>
-                <div class="menu_cart_img">
-                    <img src="images/menu1.png" alt="menu" class="img-fluid w-100">
-                </div>
-                <div class="menu_cart_text">
-                    <a class="title" href="#">Competently Supply</a>
-                    <p class="size">medium</p>
-                    <span class="extra">coca-cola</span>
-                    <span class="extra">7up</span>
-                    <p class="price">$99.00 <del>$110.00</del></p>
-                </div>
-                <span class="del_icon"><i class="fal fa-times"></i></span>
-            </li>
+            </li> --}}
         </ul>
-        <p class="subtotal">sub total <span>$1220.00</span></p>
-        <a class="cart_view" href="cart_view.html"> view cart</a>
-        <a class="checkout" href="check_out.html">checkout</a>
+        <p class="subtotal">sub total <span class="cart_sub_total">${{ cartTotal() }}</span></p>
+        <a class="cart_view" href="{{ route('cart-view') }}"> view cart</a>
+        <a class="checkout" href="{{ route('checkout') }}">checkout</a>
     </div>
 </div>
 
