@@ -79,3 +79,17 @@ if(!function_exists('generateInvoiceId')){
     }
 }
 
+
+if(!function_exists('getYtThumbnail')){
+    function getYtThumbnail($link,$size = 'medium'){
+       $videoId = explode('?v=',$link);
+       $videoId = $videoId[1];
+       $finalSize = match($size){
+           'max' => 'maxresdefault',
+           'high' => 'hqdefault',
+           'medium' => 'mqdefault',
+           'low' => 'sddefault',
+       };
+       return "https://img.youtube.com/vi/$videoId/$finalSize.jpg";
+    }
+}

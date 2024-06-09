@@ -51,14 +51,14 @@
                 <div class="col-lg-7 wow fadeInUp" data-wow-duration="1s">
                     <div class="fp__menu_details_text">
                         <h2>{!! $product->name !!}</h2>
-                        <p class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <i class="far fa-star"></i>
-                            <span>(201)</span>
-                        </p>
+                        @if ($product->product_ratings_count)
+                                <p class="rating">
+                                    @for ($i = 0; $i < $product->product_ratings_avg_rating; $i++)
+                                    <i class="fas fa-star"></i>
+                                    @endfor
+                                    <span>{{$product->product_ratings_count}}</span>
+                                </p>
+                                @endif
                         @if ($product->offer_price > 0)
                             <h5 class="price">${{ $product->offer_price }}
                                 <del>{{ $product->price }}</del>
@@ -127,7 +127,7 @@
                             @else
                             <li><a class="common_btn bg-secondary" href="javascript:;">out of stock</a></li>
                             @endif
-                            <li><a class="wishlist" href="#"><i class="far fa-heart"></i></a></li>
+                            <li><a class="wishlist" onclick="loadWishList('{{ $product->id }}')"><i class="far fa-heart"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -163,101 +163,50 @@
                                 <div class="fp__review_area">
                                     <div class="row">
                                         <div class="col-lg-8">
-                                            <h4>04 reviews</h4>
+                                            <h4>{{ count($ratings) }} reviews</h4>
+                                            @foreach ($ratings as $rating)
                                             <div class="fp__comment pt-0 mt_20">
                                                 <div class="fp__single_comment m-0 border-0">
-                                                    <img src="images/comment_img_1.png" alt="review" class="img-fluid">
+                                                    <img src="{{ asset($rating->users->avatar) }}" alt="review" class="img-fluid">
                                                     <div class="fp__single_comm_text">
-                                                        <h3>Michel Holder <span>29 oct 2022 </span></h3>
+                                                        <h3>{{ $rating->users->name }} <span>{{ $rating->created_at }}</span></h3>
                                                         <span class="rating">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fad fa-star-half-alt"></i>
-                                                            <i class="fal fa-star"></i>
-                                                            <b>(120)</b>
+                                                            @for ($i = 1; $i <= $rating->rating; $i++)
+                                                                <i class="fas fa-star"></i>
+                                                            @endfor
+                                                            <b>({{ count($ratings) }})</b>
                                                         </span>
-                                                        <p>Sure there isn't anything embarrassing hiidden in the
-                                                            middles of text. All erators on the Internet
-                                                            tend to repeat predefined chunks</p>
+                                                        <p>{!! $rating->comment !!}</p>
                                                     </div>
                                                 </div>
-                                                <div class="fp__single_comment">
-                                                    <img src="images/chef_1.jpg" alt="review" class="img-fluid">
-                                                    <div class="fp__single_comm_text">
-                                                        <h3>salina khan <span>29 oct 2022 </span></h3>
-                                                        <span class="rating">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fad fa-star-half-alt"></i>
-                                                            <i class="fal fa-star"></i>
-                                                            <b>(120)</b>
-                                                        </span>
-                                                        <p>Sure there isn't anything embarrassing hiidden in the
-                                                            middles of text. All erators on the Internet
-                                                            tend to repeat predefined chunks</p>
-                                                    </div>
-                                                </div>
-                                                <div class="fp__single_comment">
-                                                    <img src="images/comment_img_2.png" alt="review" class="img-fluid">
-                                                    <div class="fp__single_comm_text">
-                                                        <h3>Mouna Sthesia <span>29 oct 2022 </span></h3>
-                                                        <span class="rating">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fad fa-star-half-alt"></i>
-                                                            <i class="fal fa-star"></i>
-                                                            <b>(120)</b>
-                                                        </span>
-                                                        <p>Sure there isn't anything embarrassing hiidden in the
-                                                            middles of text. All erators on the Internet
-                                                            tend to repeat predefined chunks</p>
-                                                    </div>
-                                                </div>
-                                                <div class="fp__single_comment">
-                                                    <img src="images/chef_3.jpg" alt="review" class="img-fluid">
-                                                    <div class="fp__single_comm_text">
-                                                        <h3>marjan janifar <span>29 oct 2022 </span></h3>
-                                                        <span class="rating">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fad fa-star-half-alt"></i>
-                                                            <i class="fal fa-star"></i>
-                                                            <b>(120)</b>
-                                                        </span>
-                                                        <p>Sure there isn't anything embarrassing hiidden in the
-                                                            middles of text. All erators on the Internet
-                                                            tend to repeat predefined chunks</p>
-                                                    </div>
-                                                </div>
-                                                <a href="#" class="load_more">load More</a>
                                             </div>
-
+                                            @endforeach
+                                            @if(count($ratings) == 0)
+                                                <p class="text-center">No reviews yet</p>
+                                            @endif
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="fp__post_review">
                                                 <h4>write a Review</h4>
-                                                <form>
+                                                <form action="{{ route('product.review.store') }}" method="POST">
+                                                    @csrf
                                                     <p class="rating">
                                                         <span>select your rating : </span>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                     </p>
                                                     <div class="row">
                                                         <div class="col-xl-12">
-                                                            <input type="text" placeholder="Name">
+                                                            <select name="rating" id="rating_input">Choose
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                         </div>
                                                         <div class="col-xl-12">
-                                                            <input type="email" placeholder="Email">
-                                                        </div>
-                                                        <div class="col-xl-12">
-                                                            <textarea rows="3" placeholder="Write your review"></textarea>
+                                                            <textarea rows="3" name="review" placeholder="Write your review"></textarea>
                                                         </div>
                                                         <div class="col-12">
                                                             <button class="common_btn" type="submit">submit
@@ -286,22 +235,22 @@
                                     <a class="category" href="#">{{ $relatedProduct->category->name }}</a>
                                 </div>
                                 <div class="fp__menu_item_text">
-                                    <p class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <i class="far fa-star"></i>
-                                        <span>74</span>
-                                    </p>
+                                    @if ($relatedProduct->product_ratings_count)
+                                <p class="rating">
+                                    @for ($i = 0; $i < $relatedProduct->product_ratings_avg_rating; $i++)
+                                    <i class="fas fa-star"></i>
+                                    @endfor
+                                    <span>{{$relatedProduct->product_ratings_count}}</span>
+                                </p>
+                                @endif
                                     <a class="title"
                                         href="{{ route('product.show', $relatedProduct->slug) }}">{{ $relatedProduct->name }}</a>
-                                    @if ($relatedProduct->offer_price > 0)
+                                        @if ($relatedProduct->offer_price > 0)
                                         <h5 class="price">${{ $relatedProduct->offer_price }}
                                             <del>{{ $relatedProduct->price }}</del>
                                         </h5>
                                     @else
-                                        ${{ $relatedProduct->offer_price }}
+                                        <h5 class="price">${{ $relatedProduct->price }}</h5>
                                     @endif
                                     <ul class="d-flex flex-wrap justify-content-center">
                                         <li><a href="javascript:;" onclick="loadProductModal('{{ $relatedProduct->id }}')"><i class="fas fa-shopping-basket"></i></a></li>

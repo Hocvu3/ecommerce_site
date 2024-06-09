@@ -1,368 +1,213 @@
-<div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-aria-labelledby="v-pills-profile-tab">
-<div class="fp_dashboard_body">
-    <h3>order list</h3>
-    <div class="fp_dashboard_order">
-        <div class="table-responsive">
-            <table class="table">
-                <tbody>
-                    <tr class="t_header">
-                        <th>Order</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th>Amount</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>#2545758745</h5>
-                        </td>
-                        <td>
-                            <p>July 16, 2022</p>
-                        </td>
-                        <td>
-                            <span class="complete">Complated</span>
-                        </td>
-                        <td>
-                            <h5>$560</h5>
-                        </td>
-                        <td><a class="view_invoice">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>#2457945235</h5>
-                        </td>
-                        <td>
-                            <p>jan 21, 2021</p>
-                        </td>
-                        <td>
-                            <span class="complete">complete</span>
-                        </td>
-                        <td>
-                            <h5>$654</h5>
-                        </td>
-                        <td><a class="view_invoice">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>#2456875648</h5>
-                        </td>
-                        <td>
-                            <p>July 11, 2020</p>
-                        </td>
-                        <td>
-                            <span class="active">active</span>
-                        </td>
-                        <td>
-                            <h5>$440</h5>
-                        </td>
-                        <td><a class="view_invoice">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>#7896542130</h5>
-                        </td>
-                        <td>
-                            <p>July 16, 2022</p>
-                        </td>
-                        <td>
-                            <span class="active">active</span>
-                        </td>
-                        <td>
-                            <h5>$225</h5>
-                        </td>
-                        <td><a class="view_invoice">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>#4587964125</h5>
-                        </td>
-                        <td>
-                            <p>jan 21, 2021</p>
-                        </td>
-                        <td>
-                            <span class="cancel">cancel</span>
-                        </td>
-                        <td>
-                            <h5>$335</h5>
-                        </td>
-                        <td><a class="view_invoice">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>#4579654153</h5>
-                        </td>
-                        <td>
-                            <p>July 11, 2020</p>
-                        </td>
-                        <td>
-                            <span class="cancel">cancel</span>
-                        </td>
-                        <td>
-                            <h5>$550</h5>
-                        </td>
-                        <td><a class="view_invoice">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>#12547965423</h5>
-                        </td>
-                        <td>
-                            <p>July 16, 2022</p>
-                        </td>
-                        <td>
-                            <span class="complete">Complated</span>
-                        </td>
-                        <td>
-                            <h5>$545</h5>
-                        </td>
-                        <td><a class="view_invoice">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>#4589635878</h5>
-                        </td>
-                        <td>
-                            <p>jan 21, 2021</p>
-                        </td>
-                        <td>
-                            <span class="cancel">cancel</span>
-                        </td>
-                        <td>
-                            <h5>$600</h5>
-                        </td>
-                        <td><a class="view_invoice">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>#89698745895</h5>
-                        </td>
-                        <td>
-                            <p>July 11, 2020</p>
-                        </td>
-                        <td>
-                            <span class="complete">complete</span>
-                        </td>
-                        <td>
-                            <h5>$200</h5>
-                        </td>
-                        <td><a class="view_invoice">View Details</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="fp__invoice">
-        <a class="go_back"><i class="fas fa-long-arrow-alt-left"></i> go back</a>
-        <div class="fp__track_order">
-            <ul>
-                <li class="active">order pending</li>
-                <li>order accept</li>
-                <li>order process</li>
-                <li>on the way</li>
-                <li>Completed</li>
-            </ul>
-        </div>
-        <div class="fp__invoice_header">
-            <div class="header_address">
-                <h4>invoice to</h4>
-                <p>7232 Broadway Suite 308, Jackson Heights, 11372, NY, United
-                    States</p>
-                <p>+1347-430-9510</p>
-            </div>
-            <div class="header_address">
-                <p><b>invoice no: </b><span>4574</span></p>
-                <p><b>Order ID:</b> <span> #4789546458</span></p>
-                <p><b>date:</b> <span>10-11-2022</span></p>
-            </div>
-        </div>
-        <div class="fp__invoice_body">
+<div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+    <div class="fp_dashboard_body">
+        <h3>order list</h3>
+        <div class="fp_dashboard_order">
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table">
                     <tbody>
-                        <tr class="border_none">
-                            <th class="sl_no">SL</th>
-                            <th class="package">item description</th>
-                            <th class="price">Price</th>
-                            <th class="qnty">Quantity</th>
-                            <th class="total">Total</th>
+                        <tr class="t_header">
+                            <th>Order</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Amount</th>
+                            <th>Action</th>
                         </tr>
-                        <tr>
-                            <td class="sl_no">01</td>
-                            <td class="package">
-                                <p>Hyderabadi Biryani</p>
-                                <span class="size">small</span>
-                                <span class="coca_cola">coca-cola</span>
-                                <span class="coca_cola2">7up</span>
-                            </td>
-                            <td class="price">
-                                <b>$120</b>
-                            </td>
-                            <td class="qnty">
-                                <b>2</b>
-                            </td>
-                            <td class="total">
-                                <b>$240</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="sl_no">02</td>
-                            <td class="package">
-                                <p>Daria Shevtsova</p>
-                                <span class="size">medium</span>
-                                <span class="coca_cola">coca-cola</span>
-                            </td>
-                            <td class="price">
-                                <b>$120</b>
-                            </td>
-                            <td class="qnty">
-                                <b>2</b>
-                            </td>
-                            <td class="total">
-                                <b>$240</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="sl_no">03</td>
-                            <td class="package">
-                                <p>Hyderabadi Biryani</p>
-                                <span class="size">large</span>
-                                <span class="coca_cola2">7up</span>
-                            </td>
-                            <td class="price">
-                                <b>$120</b>
-                            </td>
-                            <td class="qnty">
-                                <b>2</b>
-                            </td>
-                            <td class="total">
-                                <b>$240</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="sl_no">04</td>
-                            <td class="package">
-                                <p>Hyderabadi Biryani</p>
-                                <span class="size">medium</span>
-                                <span class="coca_cola">coca-cola</span>
-                                <span class="coca_cola2">7up</span>
-                            </td>
-                            <td class="price">
-                                <b>$120</b>
-                            </td>
-                            <td class="qnty">
-                                <b>2</b>
-                            </td>
-                            <td class="total">
-                                <b>$240</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="sl_no">05</td>
-                            <td class="package">
-                                <p>Daria Shevtsova</p>
-                                <span class="size">large</span>
-                            </td>
-                            <td class="price">
-                                <b>$120</b>
-                            </td>
-                            <td class="qnty">
-                                <b>2</b>
-                            </td>
-                            <td class="total">
-                                <b>$240</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="sl_no">04</td>
-                            <td class="package">
-                                <p>Hyderabadi Biryani</p>
-                                <span class="size">medium</span>
-                                <span class="coca_cola">coca-cola</span>
-                                <span class="coca_cola2">7up</span>
-                            </td>
-                            <td class="price">
-                                <b>$120</b>
-                            </td>
-                            <td class="qnty">
-                                <b>2</b>
-                            </td>
-                            <td class="total">
-                                <b>$240</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="sl_no">04</td>
-                            <td class="package">
-                                <p>Hyderabadi Biryani</p>
-                                <span class="size">medium</span>
-                                <span class="coca_cola">coca-cola</span>
-                                <span class="coca_cola2">7up</span>
-                            </td>
-                            <td class="price">
-                                <b>$120</b>
-                            </td>
-                            <td class="qnty">
-                                <b>2</b>
-                            </td>
-                            <td class="total">
-                                <b>$240</b>
-                            </td>
-                        </tr>
+                        @foreach ($orders as $order)
+                            <tr>
+                                <td>
+                                    <h5>#{{ $order->invoice_id }}</h5>
+                                </td>
+                                <td>
+                                    <p>{{ date('F d, Y', strtotime($order->created_at)) }}</p>
+                                </td>
+                                <td>
+                                    @if ($order->order_status === 'pending')
+                                        <span class="active">Pending</span>
+                                    @elseif ($order->order_status === 'in_process')
+                                        <span class="active">In Process</span>
+                                    @elseif ($order->order_status === 'delivered')
+                                        <span class="complete">Delivered</span>
+                                    @else
+                                        <span class="cancel">Cancelled</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <h5>${{ $order->grand_total }}</h5>
+                                </td>
+                                <td><a class="view_invoice" onclick="viewInvoice('{{ $order->id }}')">View
+                                        Details</a></td>
+                            </tr>
+                        @endforeach
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <td class="package" colspan="3">
-                                <b>sub total</b>
-                            </td>
-                            <td class="qnty">
-                                <b>12</b>
-                            </td>
-                            <td class="total">
-                                <b>$755</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="package coupon" colspan="3">
-                                <b>(-) Discount coupon</b>
-                            </td>
-                            <td class="qnty">
-                                <b></b>
-                            </td>
-                            <td class="total coupon">
-                                <b>$0.00</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="package coast" colspan="3">
-                                <b>(+) Shipping Cost</b>
-                            </td>
-                            <td class="qnty">
-                                <b></b>
-                            </td>
-                            <td class="total coast">
-                                <b>$10.00</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="package" colspan="3">
-                                <b>Total Paid</b>
-                            </td>
-                            <td class="qnty">
-                                <b></b>
-                            </td>
-                            <td class="total">
-                                <b>$765</b>
-                            </td>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>
-        <a class="print_btn common_btn" href="#"><i class="far fa-print"></i>
-            print
-            PDF</a>
+        @foreach ($orders as $order)
+            <div class="fp__invoice invoice_detail_{{ $order->id }}">
+                <a class="go_back"><i class="fas fa-long-arrow-alt-left"></i> go back</a>
+                <div class="fp__track_order">
+                    <ul>
+                        <li
+                            class="{{ in_array($order->order_status, ['pending', 'in_process', 'delivered']) ? 'active' : '' }}">
+                            order pending</li>
+                        <li class="{{ in_array($order->order_status, ['in_process', 'delivered']) ? 'active' : '' }}">order
+                            in process</li>
+                        <li class="{{ in_array($order->order_status, ['delivered']) ? 'active' : '' }}">order delivered
+                        </li>
+                    </ul>
+                </div>
+                <div class="fp__invoice_header">
+                    <div class="header_address">
+                        <h4>invoice to</h4>
+                        <p>{{ @$order->address }}</p>
+                        <p> {{ @$order->user_address->phone }}</p>
+                    </div>
+                    <div class="header_address">
+                        <p><b>invoice no: </b><span> #{{ $order->invoice_id }}</span></p>
+                        <p><b>Order ID:</b> <span> #{{ $order->invoice_id }}</span></p>
+                        <p><b>date:</b> <span> {{ date('d-m-Y', strtotime($order->created_at)) }}</span></p>
+                    </div>
+                </div>
+                <div class="fp__invoice_body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr class="border_none">
+                                    <th class="sl_no">SL</th>
+                                    <th class="package">item description</th>
+                                    <th class="price">Price</th>
+                                    <th class="qnty">Quantity</th>
+                                    <th class="total">Total</th>
+                                </tr>
+                                @foreach ($order->order_item as $item)
+                                    @php
+                                        $size = json_decode($item->product_size);
+                                        $options = json_decode($item->product_option);
 
+                                        $qty = $item->qty;
+                                        $unit_price = $item->unit_price;
+                                        $size_price = $size->price ?? 0;
+                                        $option_price = 0;
+                                        foreach ($options as $optionItem) {
+                                            $option_price += $optionItem->price;
+                                        }
+                                        $total = ($option_price + $size_price + $unit_price) * $qty;
+                                        //dd($total,$option_price,$size_price,$qty)
+                                    @endphp
+                                    <tr>
+                                        <td class="sl_no">{{ ++$loop->index }}</td>
+                                        <td class="package">
+                                            <p>{{ $item->product_name }}</p>
+                                            <span class="size">{{ @$size->name }} -
+                                                {{ @$size->price ? '$' . @$size->price : '' }}</span>
+                                            @foreach ($options as $option)
+                                                <span
+                                                    class="coca_cola">{{ @$option->name }}-{{ @$option->price ? '$' . @$option->price : '' }}</span>
+                                            @endforeach
+                                        </td>
+                                        <td class="price">
+                                            <b>${{ @$item->unit_price }}</b>
+                                        </td>
+                                        <td class="qnty">
+                                            <b>{{ $item->qty }}</b>
+                                        </td>
+                                        <td class="total">
+                                            <b>${{ $total }}</b>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td class="package" colspan="3">
+                                        <b>sub total</b>
+                                    </td>
+                                    <td class="qnty">
+                                        <b>{{ $order->product_qty }}</b>
+                                    </td>
+                                    <td class="total">
+                                        <b>${{ $order->subtotal }}</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="package coupon" colspan="3">
+                                        <b>(-) Discount coupon</b>
+                                    </td>
+                                    <td class="qnty">
+                                        <b></b>
+                                    </td>
+                                    <td class="total coupon">
+                                        <b>${{ $order->discount }}</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="package coast" colspan="3">
+                                        <b>(+) Shipping Cost</b>
+                                    </td>
+                                    <td class="qnty">
+                                        <b></b>
+                                    </td>
+                                    <td class="total coast">
+                                        <b>${{ $order->delivery_charge }}</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="package" colspan="3">
+                                        <b>Total Paid</b>
+                                    </td>
+                                    <td class="qnty">
+                                        <b></b>
+                                    </td>
+                                    <td class="total">
+                                        <b>${{ $order->grand_total }}</b>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <a class="print_btn common_btn d-print-none" id="print_pdf" onclick="printPdf('{{ $order->id }}')"
+                    href="#"><i class="far fa-print"></i>
+                    print
+                    PDF</a>
+
+            </div>
+        @endforeach
     </div>
 </div>
-</div>
+@push('scripts')
+    <script>
+        function viewInvoice(id) {
+            $(".fp_dashboard_order").fadeOut();
+            $(".invoice_detail_" + id).fadeIn();
+        };
+
+        function printPdf(id) {
+            let printContents = $('.invoice_detail_'+id).html();
+
+            // Open a new window for printing
+            let printWindow = window.open('', '', 'width=800,height=800');
+
+            // Write the HTML content into the new window
+            printWindow.document.open();
+            printWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+                <body>
+                    ${printContents}
+                </body>
+            </html>
+        `);
+            printWindow.document.close();
+
+            // Ensure the content is fully loaded before printing
+            setTimeout(function() {
+                printWindow.print();
+                printWindow.close();
+            }, 500);
+        };
+        $(document).ready(function() {
+
+        })
+    </script>
+@endpush

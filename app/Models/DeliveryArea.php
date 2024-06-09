@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DeliveryArea extends Model
 {
-    use HasFactory;
+    public function userAddress(){
+        return $this->hasMany(Address::class,'id','delivery_area_id');
+    }
 }

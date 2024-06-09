@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg main_menu">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
-            <img src="{{ asset('frontend/images/logo.png') }}" alt="FoodPark" class="img-fluid">
+            <h3>{{ config('app.name') }}</h3>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,50 +10,32 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=" ">menu</a>
+                    <a class="nav-link" href="{{ route('product.menu.show') }}"><i class="fas fa-hamburger"></i> menu</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('chefs.index') }}">chefs</a>
+                </li> --}}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('blog.index') }}"><i class="fas fa-newspaper"></i> blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">pages <i class="far fa-angle-down"></i></a>
-                    <ul class="droap_menu">
-                        <li><a href="menu_details.html">menu details</a></li>
-                        <li><a href="blog_details.html">blog details</a></li>
-                        <li><a href="cart_view.html">cart view</a></li>
-                        <li><a href="check_out.html">checkout</a></li>
-                        <li><a href="payment.html">payment</a></li>
-                        <li><a href="testimonial.html">testimonial</a></li>
-                        <li><a href="search_menu.html">search result</a></li>
-                        <li><a href="404.html">404/Error</a></li>
-                        <li><a href="faq.html">FAQs</a></li>
-                        <li><a href="sign_in.html">sign in</a></li>
-                        <li><a href="sign_up.html">sign up</a></li>
-                        <li><a href="forgot_password.html">forgot password</a></li>
-                        <li><a href="privacy_policy.html">privacy policy</a></li>
-                        <li><a href="terms_condition.html">terms and condition</a></li>
-                    </ul>
+                    <a class="nav-link" href="{{ route('about.index') }}"><i class="fas fa-address-card"></i> about</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('blog.index') }}">blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('about.index') }}">about</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact.index') }}">contact</a>
+                    <a class="nav-link" href="{{ route('contact.index') }}"><i class="fas fa-phone-square-alt"></i> contact</a>
                 </li>
             </ul>
             <ul class="menu_icon d-flex flex-wrap">
                 <li>
                     <a href="#" class="menu_search"><i class="far fa-search"></i></a>
                     <div class="fp__search_form">
-                        <form>
+                        <form action="{{ route('product.menu.show') }}" method="GET">
+                            @csrf
                             <span class="close_search"><i class="far fa-times"></i></span>
-                            <input type="text" placeholder="Search . . .">
+                            <input type="text" placeholder="Search . . ." name="search">
                             <button type="submit">search</button>
                         </form>
                     </div>
@@ -62,11 +44,10 @@
                     <a class="cart_icon"><i class="fas fa-shopping-basket"></i> <span  class="cart_count">{{ count(Cart::content()) }}</span></a>
                 </li>
                 <li>
-                    <a href="{{ route('login') }}"><i class="fas fa-user"></i></a>
+                    <a><i class="fas fa-comment-dots"></i></a>
                 </li>
                 <li>
-                    <a class="common_btn" href="#" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop">coming soon!</a>
+                    <a href="{{ route('login') }}"><i class="fas fa-user"></i></a>
                 </li>
             </ul>
         </div>

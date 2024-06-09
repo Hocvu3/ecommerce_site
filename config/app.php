@@ -169,6 +169,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\PaymentGatewaySettingsProvider::class,
+        App\Providers\SettingServiceProvider::class,
+        App\Providers\CustomMailServiceProvider::class,
     ])->toArray(),
 
     /*

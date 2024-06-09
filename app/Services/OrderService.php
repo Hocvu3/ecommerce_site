@@ -24,6 +24,7 @@ class OrderService{
             $order->currency_name=NULL;
             $order->order_status='pending';
             $order->delivery_area_id =  session()->get('delivery_area_id');
+            $order->address_id =  session()->get('address_id')??0;
             $order->save();
             foreach(Cart::content() as $product){
                 $orderItem = new OrderItem();
@@ -55,5 +56,6 @@ class OrderService{
         session()->forget('delivery_area_id');
         session()->forget('order_id');
         session()->forget('grand_total');
+        session()->forget('address_id');
     }
 }

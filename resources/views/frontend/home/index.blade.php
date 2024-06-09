@@ -58,7 +58,7 @@
     <!--=============================
                 DOWNLOAD APP START
             ==============================-->
-    {{-- @include('frontend.home.components.download') --}}
+    @include('frontend.home.components.download')
     <!--=============================
                 DOWNLOAD APP END
             ==============================-->
@@ -85,7 +85,7 @@
     <!--=============================
                 BLOG 2 START
             ==============================-->
-    {{-- @include('frontend.home.components.blog') --}}
+    @include('frontend.home.components.blog')
     <!--=============================
                 BLOG 2 END
             ==============================-->

@@ -46,7 +46,7 @@
                                 </a>
                             </div>
                             <div class="col-lg-3 col-6 col-sm-4 col-md-3 wow fadeInUp" data-wow-duration="1s">
-                                <a class="fp__single_payment" data-name="vnpay" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                <a class="fp__single_payment payment_card" data-name="vnpay" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     href="#">
                                     <img src="{{ asset('frontend/images/vnpay.jpg') }}" alt="payment method"
                                         class="img-fluid w-100">

@@ -7,6 +7,9 @@ use App\Http\Requests\Frontend\AddressCreateRequest;
 use App\Http\Requests\Frontend\AddressUpdateRequest;
 use App\Models\Address;
 use App\Models\DeliveryArea;
+use App\Models\Order;
+use App\Models\ProductRating;
+use App\Models\WishList;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -15,7 +18,10 @@ class DashboardController extends Controller
     public function index():View{
         $deliveryAreas = DeliveryArea::where('status',1)->get();
         $userAddresses = Address::where('user_id',auth()->user()->id)->get();
-        return view('frontend.dashboard.index',compact('deliveryAreas','userAddresses'));
+        $orders = Order::where('user_id',auth()->user()->id)->get();
+        $wishLists = WishList::where('user_id',auth()->user()->id)->get();
+        $ratings = ProductRating::where('user_id',auth()->user()->id)->get();
+        return view('frontend.dashboard.index',compact('deliveryAreas','userAddresses','orders','wishLists','ratings'));
     }
     public function createAddress(AddressCreateRequest $request){
         $address = new Address();

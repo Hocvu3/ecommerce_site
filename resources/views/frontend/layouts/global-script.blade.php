@@ -1,9 +1,9 @@
 <script>
     function loadProductModal(productId) {
-        //alert(productId)
+        //alert(productId);
         $.ajax({
             method: 'GET',
-            url: '{{ route('load-product-modal', ':productId') }}'.replace(":productId", productId),
+            url: '{{ route("load-product-modal", ":productId") }}'.replace(":productId", productId),
             beforeSend: function() {
                 $('.overlay-container').removeClass('d-none');
                 $('.overlay').addClass('active');
@@ -20,12 +20,35 @@
                 $('.overlay').removeClass('active');
             }
         })
-    }
-
+    };
+    function loadWishList(productId) {
+        //alert(productId);
+        $.ajax({
+            method: 'GET',
+            url: '{{ route("load-wish-list", ":productId") }}'.replace(":productId", productId),
+            beforeSend: function() {
+                $('.overlay-container').removeClass('d-none');
+                $('.overlay').addClass('active');
+            },
+            success: function(response) {
+                toastr.success(response.message);
+            },
+            error: function(xhr, status, error) {
+                let errorsMessage = xhr.responseJSON.errors;
+                $.each(errorsMessage,function(index,value){
+                    toastr.error(value);
+                })
+            },
+            complete: function() {
+                $('.overlay-container').addClass('d-none');
+                $('.overlay').removeClass('active');
+            }
+        })
+    };
     function updateSidebarCart(callback = null) {
         $.ajax({
             method: 'GET',
-            url: '{{ route('get-cart') }}',
+            url: '{{ route("get-cart") }}',
             success: function(response) {
                 $('.cart_content').html(response);
                 let cartTotal = $('#cart_total').val();
@@ -38,25 +61,23 @@
                 }
             },
             error: function(xhr, status, error) {
-
             }
         })
-    }
-
+    };
     function activeLoader() {
         $('.overlay-container').removeClass('d-none');
         $('.overlay').addClass('active');
-    }
+    };
 
     function deactiveLoader() {
         $('.overlay-container').addClass('d-none');
         $('.overlay').removeClass('active');
-    }
+    };
     //remove cart product
     function removeProductFromSidebar($rowId) {
         $.ajax({
             method: 'GET',
-            url: '{{ route('remove-cart-product', ':rowId') }}'.replace(":rowId", $rowId),
+            url: '{{ route("remove-cart-product", ":rowId") }}'.replace(":rowId", $rowId),
             beforeSend: function() {
                 $('.overlay-container').removeClass('d-none');
                 $('.overlay').addClass('active');
@@ -80,11 +101,11 @@
                 $('.overlay').removeClass('active');
             }
         })
-    }
+    };
 
     function getCartTotal() {
         return parseInt("{{ cartTotal() }}");
-    }
+    };
     $('body').on('click', '.delete-item', function(e) {
         e.preventDefault();
         let url = $(this).attr('href');

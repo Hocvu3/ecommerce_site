@@ -10,8 +10,8 @@
                 <div class="fp__breadcrumb_text">
                     <h1>contact with us</h1>
                     <ul>
-                        <li><a href="index.html">home</a></li>
-                        <li><a href="#">contact</a></li>
+                        <li><a href="{{ url('/') }}">home</a></li>
+                        <li><a href="javascript:void(0)">contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -33,8 +33,8 @@
                         <span><i class="fal fa-phone-alt"></i></span>
                         <div class="text">
                             <h3>call</h3>
-                            <p>+84-365-298-193</p>
-                            <p>+0365298193</p>
+                            <p>{{ $contact->phone_one }}</p>
+                            <p>{{ $contact->phone_two }}</p>
                         </div>
                     </div>
                 </div>
@@ -43,8 +43,8 @@
                         <span><i class="fal fa-envelope"></i></span>
                         <div class="text">
                             <h3>mail</h3>
-                            <p>hocvu@gmail.com</p>
-                            <p>example@gmail.com</p>
+                            <p>{{ $contact->mail_one }}</p>
+                            <p>{{ $contact->mail_two }}</p>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                         <span><i class="fas fa-street-view"></i></span>
                         <div class="text">
                             <h3>location</h3>
-                            <p>Tran Cung, Bac Tu Liem, Ha Noi</p>
+                            <p>{{ $contact->address }}</p>
                         </div>
                     </div>
                 </div>
@@ -67,33 +67,33 @@
                                 <div class="col-xl-6 col-lg-6">
                                     <div class="fp__contact_form_input">
                                         <span><i class="fal fa-user-alt"></i></span>
-                                        <input type="text" placeholder="Name">
+                                        <input type="text" placeholder="Name" name="name">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6">
                                     <div class="fp__contact_form_input">
                                         <span><i class="fal fa-envelope"></i></span>
-                                        <input type="email" placeholder="Email">
+                                        <input type="email" placeholder="Email" name="email">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6">
                                     <div class="fp__contact_form_input">
                                         <span><i class="fal fa-phone-alt"></i></span>
-                                        <input type="text" placeholder="Phone">
+                                        <input type="text" placeholder="Phone" name="phone">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6">
                                     <div class="fp__contact_form_input">
                                         <span><i class="fal fa-book"></i></span>
-                                        <input type="text" placeholder="Subject">
+                                        <input type="text" placeholder="Subject" name="subject">
                                     </div>
                                 </div>
                                 <div class="col-xl-12">
                                     <div class="fp__contact_form_input textarea">
                                         <span><i class="fal fa-book"></i></span>
-                                        <textarea rows="8" placeholder="Message"></textarea>
+                                        <textarea rows="8" placeholder="Message" name="message"></textarea>
                                     </div>
-                                    <button type="submit">send message</button>
+                                    <button type="submit" id="contact_btn">send message</button>
                                 </div>
                             </div>
                         </form>
@@ -103,9 +103,10 @@
                     <div class="col-xl-12 wow fadeInUp" data-wow-duration="1s">
                         <div class="fp__contact_map">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29199.78758207035!2d90.43684581929195!3d23.819543211524437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c62fce7d991f%3A0xacfaf1ac8e944c05!2sBasundhara%20Residential%20Area%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1667021568123!5m2!1sen!2sbd"
+                                src="{{ $contact->map_link }}"
                                 style="border:0;" allowfullscreen="" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                referrerpolicy="no-referrer">
+                            </iframe>
                         </div>
                     </div>
                 </div>
@@ -117,3 +118,47 @@
     ==============================-->
 
 @endsection
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('.fp__contact_form').on('submit', function(e) {
+            e.preventDefault();
+            let formData = $(this).serialize();
+            // //let message = $('textarea[name=message]').val();
+            // let name = $('input[name=name]').val();
+            // let email = $('input[name=email]').val();
+            $.ajax({
+                method: 'POST',
+                url: '{{ route("contact.send.message") }}',
+                data: formData,
+                headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                beforeSend: function() {
+                   $('#contact_btn').attr('disabled', true);
+                   $('#contact_btn').html(
+                       '<span class="spinner-border spinner-border-sm text-light modal-cart-button" role="status" aria-hidden="true"></span> Loading...'
+                   )
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        toastr.success(response.message);
+                    } else if (response.status === 'error') {
+                        toastr.error(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    let errorMessage = xhr.responseJSON.errors;
+                    $.each(errorMessage, function(index, value) {
+                        toastr.error(value);
+                    })
+                },
+                complete: function() {
+                    $('#contact_btn').html('Send Message');
+                    $('#contact_btn').attr('disabled', false);
+                }
+            })
+        })
+    })
+</script>
+@endpush

@@ -5,7 +5,7 @@
                 <div class="row justify-content-between">
                     <div class="col-xl-5 col-md-6 wow fadeInUp" data-wow-duration="1s">
                         <div class="fp__download_img">
-                            <img src="images/download_img.png" alt="download" class="img-fluid w-100">
+                            <img src="{{ asset('frontend/images/download_img.png') }}" alt="download" class="img-fluid w-100">
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-6 wow fadeInUp" data-wow-duration="1s">

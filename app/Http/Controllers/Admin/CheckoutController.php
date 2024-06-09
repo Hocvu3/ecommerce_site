@@ -34,6 +34,7 @@ class CheckoutController extends Controller
         session()->put('address',$selectedAddress);
         session()->put('delivery_fee',$address->delivery_area->delivery_fee);
         session()->put('delivery_area_id',$address->delivery_area->id);
+        session()->put('address_id',$address->id);
         return response(['redirect_url'=>route('payment.index')]);
     }
 }

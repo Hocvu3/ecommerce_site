@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ProfileController;
+use App\Http\Controllers\Frontend\WishListController;
 use Illuminate\Routing\RouteRegistrar;
 use Illuminate\Support\Facades\Route;
 
@@ -62,6 +63,10 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/payment/momo',[PaymentController::class,'payWithMomo'])->name('payment.momo');
     Route::get('/payment/momo/success',[PaymentController::class,'successMomo'])->name('payment.momo.success');
     Route::get('/payment/momo/cancel',[PaymentController::class,'cancelMomo'])->name('payment.momo.cancel');
+    //vnpay
+    Route::get('/payment/vnpay',[PaymentController::class,'payWithVnpay'])->name('payment.vnpay');
+    // Route::get('/payment/momo/success',[PaymentController::class,'successMomo'])->name('payment.momo.success');
+    // Route::get('/payment/momo/cancel',[PaymentController::class,'cancelMomo'])->name('payment.momo.cancel');
 });
 //
 require __DIR__.'/auth.php';
@@ -71,8 +76,14 @@ require __DIR__.'/auth.php';
 Route::get('/',[FrontendController::class,'index'])->name('home');
 //Get product name
 Route::get('/product/{slug}',[FrontendController::class,'showProduct'])->name('product.show');
+//Get menu
+Route::get('/product',[FrontendController::class,'showMenu'])->name('product.menu.show');
+//Get review
+Route::post('/product',[FrontendController::class,'reviewStore'])->name('product.review.store');
 //Get product modal route
 Route::get('/load-product-modal/{productId}',[FrontendController::class,'loadProductModal'])->name('load-product-modal');
+//get wishlist
+Route::get('/load-wish-list/{productId}',[WishListController::class,'loadWishList'])->name('load-wish-list');
 
 
 //Add to cart route
@@ -100,9 +111,12 @@ Route::get('/about-index',[AboutController::class,'index'])->name('about.index')
 
 //Blogs
 Route::get('/blog-index',[BlogController::class,'index'])->name('blog.index');
+Route::get('/blog-details/{slug}',[BlogController::class,'show'])->name('blog.details');
+Route::post('/blog-details/send-message',[BlogController::class,'sendMessage'])->name('blog.send.message');
 
 //Contacts
 Route::get('/contact-index',[ContactController::class,'index'])->name('contact.index');
+Route::post('/contact-index/send',[ContactController::class,'sendMessage'])->name('contact.send.message');
 
 
 

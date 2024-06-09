@@ -18,16 +18,18 @@
                           <a class="nav-link active" id="home-tab4" data-toggle="tab" href="#paypal-setting" role="tab" aria-controls="home" aria-selected="true">Paypal</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" id="profile-tab4" data-toggle="tab" href="#stripe-setting" role="tab" aria-controls="profile" aria-selected="false">Stripe</a>
+                          <a class="nav-link" id="profile-tab4" data-toggle="tab" href="#momo-setting" role="tab" aria-controls="profile" aria-selected="false">Momo</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#razorpay-setting" role="tab" aria-controls="contact" aria-selected="false">Razorpay</a>
+                          <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#vnpay-setting" role="tab" aria-controls="contact" aria-selected="false">VnPay</a>
                         </li>
                       </ul>
                     </div>
                     <div class="col-12 col-sm-12 col-md-10">
                       <div class="tab-content no-padding" id="myTab2Content">
                         @include('admin.payment-setting.section.paypal')
+                        @include('admin.payment-setting.section.vnpay')
+                        @include('admin.payment-setting.section.momo')
                       </div>
                     </div>
                   </div>

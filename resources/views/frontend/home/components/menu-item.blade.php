@@ -34,8 +34,11 @@
                         'category_id' => $category->id,
                     ])
                         ->orderBy('id', 'DESC')
+                        ->withAvg('productRatings', 'rating')
+                        ->withCount('productRatings')
                         ->take(8)
                         ->get();
+                        //dd($products);
                 @endphp
                 @foreach ($products as $product)
                     <div class="col-xl-3 col-sm-6 col-lg-4  {{ $category->slub }} wow fadeInUp" data-wow-duration="1s">
@@ -46,14 +49,14 @@
                                 <a class="category" href="#">{{ @$product->category->name }}</a>
                             </div>
                             <div class="fp__menu_item_text">
+                                @if ($product->product_ratings_count)
                                 <p class="rating">
+                                    @for ($i = 0; $i < $product->product_ratings_avg_rating; $i++)
                                     <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <i class="far fa-star"></i>
-                                    <span>145</span>
+                                    @endfor
+                                    <span>{{$product->product_ratings_count}}</span>
                                 </p>
+                                @endif
                                 <a class="title" href="{{ route('product.show',$product->slug) }}">{{ $product->name }}</a>
                                 @if ($product->offer_price > 0)
                                     <h5 class="price">${{ $product->offer_price }}
@@ -64,8 +67,8 @@
                                 @endif
                                 <ul class="d-flex flex-wrap justify-content-center">
                                     <li><a href="javascript:;" onclick="loadProductModal('{{ $product->id }}')"><i class="fas fa-shopping-basket"></i></a></li>
-                                    <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="far fa-eye"></i></a></li>
+                                    <li><a href="javascript:;" onclick="loadWishList('{{ $product->id }}')"><i class="fal fa-heart"></i></a></li>
+                                    <li><a href="{{ route('product.show',$product->slug) }}"><i class="far fa-eye"></i></a></li>
                                 </ul>
                             </div>
                         </div>

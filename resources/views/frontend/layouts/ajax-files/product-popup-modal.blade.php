@@ -6,14 +6,14 @@
     </div>
     <div class="fp__cart_popup_text">
         <a href="#" class="title">{{ $product->name }}</a>
-        <p class="rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-            <i class="far fa-star"></i>
-            <span>(201)</span>
-        </p>
+        @if ($product->product_ratings_count)
+            <p class="rating">
+                @for ($i = 0; $i < $product->product_ratings_avg_rating; $i++)
+                    <i class="fas fa-star"></i>
+                @endfor
+                <span>{{ $product->product_ratings_count }}</span>
+            </p>
+        @endif
         @if ($product->offer_price > 0)
             <input type="hidden" name="base_price" value="{{ $product->offer_price }}">
 
@@ -23,7 +23,7 @@
                 <del>{{ $product->price }}</del>
             </h5>
         @else
-            ${{ $product->offer_price }}
+            <h5 class="price">${{ $product->price }}</h5>
         @endif
         @if ($product->productSizes()->exists())
             <div class="details_size">
@@ -77,9 +77,9 @@
         <ul class="details_button_area d-flex flex-wrap">
             {{-- <li><a class="common_btn" href="#">add to cart</a></li> --}}
             @if ($product->quantity > 0)
-            <button type="submit" class="common_btn modal-cart-button">add to cart</button>
+                <button type="submit" class="common_btn modal-cart-button">add to cart</button>
             @else
-            <li><a class="common_btn bg-secondary" href="javascript:;">out of stock</a></li>
+                <li><a class="common_btn bg-secondary" href="javascript:;">out of stock</a></li>
             @endif
         </ul>
     </div>
@@ -144,13 +144,13 @@
             let formData = $(this).serialize();
             $.ajax({
                 method: 'GET',
-                url: '{{ route("add-to-cart") }}',
+                url: '{{ route('add-to-cart') }}',
                 data: formData,
                 beforeSend: function() {
-                    $('.modal-cart-button').attr('disabled',true);
+                    $('.modal-cart-button').attr('disabled', true);
                     $('.modal-cart-button').html(
                         '<span class="spinner-border spinner-border-sm text-light modal-cart-button" role="status" aria-hidden="true"></span> Loading...'
-                        )
+                    )
                 },
                 success: function() {
                     updateSidebarCart();
@@ -160,9 +160,9 @@
                     let errormessage = xhr.responseJSON.message;
                     toastr.error(errormessage);
                 },
-                complete: function(){
+                complete: function() {
                     $('.modal-cart-button').html('Add To Cart');
-                    $('.modal-cart-button').attr('disabled',false);
+                    $('.modal-cart-button').attr('disabled', false);
 
                 }
             })
